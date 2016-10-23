@@ -30,3 +30,30 @@ Fixed
 it worked
 
 so stupid
+
+####Ruby on rails with mongoid
+`
+  Cannot load `Rails.application.database_configuration`: Could not load database configuration. No such file - ["config/database.yml"]
+`
+In `config/application.rb` remove `require 'rails/all'`, replace it
+
+  to (in Rails 3.x):
+  
+  ```ruby
+    require "action_controller/railtie"
+    require "action_mailer/railtie"
+    require "active_resource/railtie"
+    require "rails/test_unit/railtie"
+    # require "sprockets/railtie" # Uncomment this line for Rails 3.1+
+  ```
+  
+  or (in Rails 4.x):
+  
+  ```ruby
+    # Pick the frameworks you want:
+    # require "active_record/railtie"
+    require "action_controller/railtie"
+    require "action_mailer/railtie"
+    require "sprockets/railtie"
+    require "rails/test_unit/railtie"
+  ```
